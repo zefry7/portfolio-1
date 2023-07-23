@@ -28,29 +28,34 @@
 body {
     font-family: Lexend;
 }
+.body__lock {
+    overflow: hidden;
+}
 .wrapper {
     margin: 0 auto;    
     max-width: 1728px;
     width: 100%;
-    @include adap-page("padding-left", 2, 20, 120);
-    @include adap-page("padding-right", 2, 20, 120);
 }
 .header-content {
+    @include adap-page("padding-left", 2, 20, 120);
+    @include adap-page("padding-right", 2, 20, 120);
+    @include adap-page("width", 2, 320, 1728);
+    position: fixed;
+    top:0;
+    z-index: 10;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     @include adap-page("height", 2, 70, 130);
-
-    @media (max-width: 1024px) {
-        & > .icons-row {
-            display: none;
-        }
-    }
 }
 
 .header-content__logo {
+    cursor: pointer;
     @include font-style(black, 40px, 500)
+}
+.header-content__logo:hover {
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.404);
 }
 .header-content__menu {
     display: flex;
@@ -58,11 +63,13 @@ body {
     top: 3px;
     justify-content: space-between;
     @include adap-page("width", 1, 320, 420);
-    @include adap-page("margin-right", 1, 20, 48);
-    @include adap-page("margin-left", 1, 20, 300);
+    margin-right: 50px;
 }
 .header-content__section-button {
-    @include font-style(black, 20px, 400)
+    @include font-style(black, 20px, 400);   
+}
+.header-content__section-button:hover {
+    text-decoration: underline;
 }
 .icons-row {
     display: flex;
@@ -74,62 +81,142 @@ body {
     @include adap-page("margin-left", 2, 30, 250);
 }
 .icons-row__icon {
+    cursor: pointer;
     @include adap-page("height", 2, 18, 78);
     @include adap-page("width", 2, 18, 78);
 }
 .header-content__connect-button {
     @include font-style(black, 18px, 400);
-    max-height: 60px;
+    height: 60px;
     line-height: 40px;
     min-width: 159px;
     border-radius: 11px;
     background: #D9D9D9;
     padding: 10px 21px;
 }
-.burger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 30px;
-    width: 45px;
+.title-block__button-contect:hover,
+.header-content__connect-button:hover {
+    cursor: pointer;
+    background: #e7e7e7e5;
+    transition: all 0.1s ease 0s;
 }
-.burger-menu__line {
-    width: 100%;
-    height: 3px;
-    background-color: black;
-}
-.burger-menu__block {
+
+.burger-menu { 
     display: none;
-    position: absolute;
-    @include adap-page("right", 2, 20, 120);
-    @include adap-page("top", 2, 70, 130);
-    height: 300px;
-    width: 200px;
-    background-color: white;
-    border-radius: 11px;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
-.header-content__menu_burger_active {
+
+.header-content__menu-body {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    width: 100%;
-    height: 240px;
-    margin: 0px;
+    align-items: center;
 
-    .header-content__section-button {
-        line-height: 60px;
-        margin-bottom: 20px;
-    }
-
-    &.header-content__connect-button {
-        background-color: white;
-        border: 1px solid rgba(128, 128, 128, 0.404);
+    @media (max-width: 1024px) {
+        & > .icons-row {
+            display: none;
+        }
     }
 }
+
+@media (max-width: 767px) {
+    .burger-menu {
+        display: block;
+        height: 30px;
+        width: 45px;
+        position: relative;
+    }
+
+    .burger-menu::after,
+    .burger-menu::before,
+    .burger-menu span {
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        left: 0;
+        background-color: black;
+        transition: all 0.3s ease 0s;
+    }
+ 
+    .burger-menu::after,
+    .burger-menu::before {
+        content: "";
+    }
+
+    .burger-menu::after {
+       bottom: 0;
+    }
+    .burger-menu::before {
+       top: 0;
+    }
+    .burger-menu span {
+        top: 50%;
+        transform: scale(1) translate(0, -50%);
+    }
+    .burger-menu_active::after {
+        top: 50%;
+        transform: rotate(-45deg) translate(0px, -50%);
+
+    }
+    .burger-menu_active::before {
+        top: 50%;
+        transform: rotate(45deg) translate(0px, -50%);
+    }
+    .burger-menu_active span {
+       width: 0;
+    }
+
+    .header-content__menu-body {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        @include adap-page("top", 2, 70, 130);
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        border-radius: 11px;
+        flex-direction: column;
+        overflow: auto;
+
+        .header-content__menu {
+            flex-direction: column;
+            text-align: center;
+            justify-content: left;
+            height: auto;
+            width: 100%;
+            margin: 0;
+        }
+
+        .header-content__menu a {
+            height: 100px;
+            line-height: 100px;
+            font-size: 26px;
+        }
+
+        .header-content__menu a:hover {
+            background: #e7e7e7e5;
+            text-decoration: none;
+        }
+
+        .header-content__connect-button {
+            height: 100px;
+            width: 100%;
+            line-height: 80px;
+            text-align: center;
+            font-size: 26px;
+            background-color: white;
+            border: 2px solid rgba(128, 128, 128, 0.39);
+        }
+    }
+
+    .header-content__menu-body_visited{
+        display: flex;
+    }
+}
+
+.main-content {
+    @include adap-page("padding-left", 2, 20, 120);
+    @include adap-page("padding-right", 2, 20, 120);
+}
+
 .title-block {
     position: relative;
 }
@@ -139,7 +226,7 @@ body {
 }
 
 .title-block__info {
-    @include adap-page("margin-top", 2, 45, 380);
+    @include adap-page("margin-top", 2, 100, 485);
 }
 .title-block__welcome-block {
     @include font-style(black, 24px, 400);
@@ -239,6 +326,10 @@ body {
             background: url(../img/download.svg) center/100% 100% no-repeat;
         }
     }
+
+    &:hover {
+        background: linear-gradient(180deg, #04c0aa 0%, rgba(67, 83, 112, 0.64) 100%);
+    }
 }
 
 .skills {
@@ -286,9 +377,6 @@ body {
     }
 }
 
-.projects__wrapper {
-    
-}
 .projects__title {
     @include font-style(black, 48px, 600);
     @include adap-page("font-size", 2, 12, 48);
@@ -322,6 +410,12 @@ body {
                 calc(3px + (12 - 3) * ((100vw - 320px) / (1728 - 320))) 
     -2px rgba(0, 0, 0, 0.25);
     height: 100%;
+    transition: all 0.2s ease 0s;
+}
+
+.projects__item:hover {
+    transition: all 0.2s ease 0s;
+    transform: scale(1.1);
 }
 
 .projects__item_shadow_off {
@@ -407,6 +501,11 @@ body {
     @include adap-page("padding-top", 2, 18, 76);
     @include adap-page("padding-bottom", 2, 18, 76);
     text-align: center;
+    transition: all 0.3s ease 0s;
+}
+.services__item:hover {
+    transition: all 0.3s ease 0s;
+    transform: scale(0.9);
 }
 .services__name-item {
     @include font-style(white, 36px, 500);
@@ -417,6 +516,10 @@ body {
     @include font-style(white, 24px, 500);
     @include adap-page("font-size", 2, 6, 24);
     @include adap-page("margin-right", 2, -6, -24);
+}
+.services__more-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .services__more-button::after {
     content: "";
@@ -469,6 +572,7 @@ body {
     @include adap-page("padding-top", 2, 5, 22);
     @include adap-page("padding-bottom", 2, 5, 22);
     @include adap-page("padding-left", 2, 12, 48);
+    @include adap-page("padding-right", 2, 12, 48);
     @include adap-page("border-width", 2, 0.5, 5);
     @include adap-page("padding-top", 2, 5, 22);
     @include adap-page("padding-bottom", 2, 5, 22);
@@ -491,8 +595,10 @@ body {
     linear-gradient(90deg, #C0369A, #0E2988E3, #2E890DE3) border-box;
     @include adap-page("width", 2, 110, 486);
     @include adap-page("height", 2, 60, 267);
+    resize: none; 
 }
 .communication__button-send {
+    padding-right: 0;
     text-align: center;
     margin: 0 auto;
     padding-left: 0;
@@ -502,6 +608,14 @@ body {
     @include adap-page("border-width", 2, 2, 10);
     @include adap-page("padding-top", 2, 5, 15);
     @include adap-page("padding-bottom", 2, 5, 15);
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+.communication__button-send:hover {
+    transition: all 0.1s ease 0s;
+    color: white;
+    background: linear-gradient(90deg, #C036AA, #895F0DE3) padding-box,
+    linear-gradient(90deg, #C036AA, #895F0DE3) border-box;
 }
 .footer-content {
     display: flex;

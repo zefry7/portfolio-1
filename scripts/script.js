@@ -1,48 +1,37 @@
 
+let burgerMenu = document.getElementsByClassName("burger-menu")[0];
+let menuBody = document.getElementsByClassName("header-content__menu-body")[0];
 
-window.addEventListener(`resize`, () => {
-    console.log(window.screen.width);
-});
+burgerMenu.addEventListener("click", () => {
+    document.body.classList.toggle("body__lock");
+    burgerMenu.classList.toggle("burger-menu_active");
+    menuBody.classList.toggle("header-content__menu-body_visited");
+})
 
+const menuLinks = document.querySelectorAll(".header-content__section-button[data-goto]");
 
-let headerContent = document.getElementsByClassName("header-content")[0];
-
-function sizePage() {
-    if (window.screen.width <= 768 && document.getElementsByClassName("burger-menu")[0] == null) {
-        let burgerMenu = document.createElement("div");
-        burgerMenu.className = "burger-menu";
-        burgerMenu.innerHTML = `
-        <div class="burger-menu__line"></div>
-        <div class="burger-menu__line"></div>
-        <div class="burger-menu__line"></div>
-        <div class="burger-menu__block"></div>`;
-        headerContent.append(burgerMenu);
-
-        let el = document.getElementsByClassName("burger-menu__block")[0];
-        for (let item of headerContent.children) {
-            if (item.className != "header-content__logo") {
-                item.className += " header-content__menu_burger_active";
-                el.append(item);
+if(menuLinks.length > 0) {
+    menuLinks.forEach(menuLinks => {
+        menuLinks.addEventListener("click", function(e) {
+            const elLink = e.target;
+            burgerMenu.classList.toggle("burger-menu_active");
+            menuBody.classList.toggle("header-content__menu-body_visited");
+            if(elLink.dataset.goto != "title-block" && document.getElementsByClassName(elLink.dataset.goto)) {
+                const gotoBlock = document.getElementsByClassName(elLink.dataset.goto)[0];
+                const gotoBlockValue = gotoBlock.getBoundingClientRect().top + window.scrollY - document.querySelector(".header-content").offsetHeight - 30;               
+                
+                window.scrollTo({
+                    top: gotoBlockValue,
+                    behavior: "smooth"
+                })
+                e.preventDefault();
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+                e.preventDefault();
             }
-        }
-
-        burgerMenu.addEventListener("click", () => { el.style.display = 'flex'; });
-
-
-    } else if (window.screen.width > 768 && document.getElementsByClassName("burger-menu")[0] != null) {
-        let el = document.getElementsByClassName("burger-menu__block")[0];
-
-        let menuEl = el.children[0];
-        menuEl.className = menuEl.classList[0];
-        headerContent.children[0].after(menuEl);
-
-        let buttonMenu = el.children[0];
-        buttonMenu.className = buttonMenu.classList[0];
-        headerContent.children[2].after(buttonMenu);
-
-        headerContent.removeChild(el.parentNode);
-
-    }
+        });
+    });
 }
-
-

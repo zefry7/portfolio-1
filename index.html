@@ -12,21 +12,26 @@
     <div class="wrapper">
         <header class="header-content">
             <div class="header-content__logo">Logo</div>
-            <nav class="header-content__menu">
-                <a href="#home-label" class="header-content__section-button">Home</a>
-                <a href="#skills-label" class="header-content__section-button">Skills</a>
-                <a href="#project-label" class="header-content__section-button">Project</a>
-            </nav>
-            <div class="icons-row">
-                <img src="./img/twitter.svg" alt="Twitter" class="icons-row__icon">
-                <img src="./img/skype.svg" alt="Skype" class="icons-row__icon">
-                <img src="./img/instagram.svg" alt="Instagram" class="icons-row__icon">
-                <img src="./img/linkedin.svg" alt="Linkedin" class="icons-row__icon">
+            <div class="burger-menu">
+                <span></span>
             </div>
-            <div class="header-content__connect-button">Let’s connect</div>
+            <div class="header-content__menu-body">
+                <nav class="header-content__menu">
+                    <a data-goto="title-block" href="#" class="header-content__section-button">Home</a>
+                    <a data-goto="skills" href="#" class="header-content__section-button">Skills</a>
+                    <a data-goto="projects" href="#" class="header-content__section-button">Project</a>
+                </nav>
+                <div class="icons-row">
+                    <img src="./img/twitter.svg" alt="Twitter" class="icons-row__icon">
+                    <img src="./img/skype.svg" alt="Skype" class="icons-row__icon">
+                    <img src="./img/instagram.svg" alt="Instagram" class="icons-row__icon">
+                    <img src="./img/linkedin.svg" alt="Linkedin" class="icons-row__icon">
+                </div>
+                <div class="header-content__connect-button">Let’s connect</div>
+            </div>
         </header>
         <main class="main-content wrapper__margin">
-            <section class="title-block title-block__margin" id="home-label">
+            <section class="title-block title-block__margin">
                 <div class="title-block__info">
                     <div class="title-block__welcome-block">
                         Welcome my portfolio<br>
@@ -36,7 +41,6 @@
                 </div>
                 <img src="./img/main-img.gif" alt="Веб-дизайнер" class="title-block__img">
             </section>
-
             <section class="about-me about-me__margin">
                 <h2 class="about-me__title">About me</h2>
                 <div class="about-me__info">
@@ -55,7 +59,7 @@
                     </div>
                 </div>
             </section>
-            <section class="skills skills__wrapper" id="skills-label">
+            <section class="skills skills__wrapper">
                 <h2 class="skills__title">Skills</h2>
                 <div class="skills__block">
                     <div class="skills__column-items">
@@ -72,7 +76,7 @@
                     </div>
                 </div>
             </section>
-            <section class="projects projects__wrapper" id="project-label">
+            <section class="projects projects__wrapper">
                 <h2 class="projects__title">Project</h2>
                 <div class="projects__block">
                     <div class="projects__row-items">
@@ -144,7 +148,7 @@
                         <input type="text" placeholder="Name" class="communication__input-name">
                         <input type="email" placeholder="Email" class="communication__input-email">
                         <textarea type="" placeholder="Massage" class="communication__input-massage"></textarea>
-                        
+
                         <div class="communication__button-send">Send</div>
                     </div>
                 </div>
@@ -155,11 +159,11 @@
                     <img src="./img/linkedin.svg" alt="Linkedin" class="icons-row__icon">
                 </div>
             </section>
-            <footer class="footer-content">
-                <div class="footer-content__block-left"></div>
-                <div class="footer-content__block-right"></div>
-            </footer>
         </main>
+        <footer class="footer-content">
+            <div class="footer-content__block-left"></div>
+            <div class="footer-content__block-right"></div>
+        </footer>
     </div>
 
     <script src="./scripts/script.js"></script>
