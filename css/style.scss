@@ -41,6 +41,12 @@ body {
     justify-content: space-between;
     align-items: center;
     @include adap-page("height", 2, 70, 130);
+
+    @media (max-width: 1024px) {
+        & > .icons-row {
+            display: none;
+        }
+    }
 }
 
 .header-content__logo {
@@ -61,20 +67,15 @@ body {
 .icons-row {
     display: flex;
     justify-content: space-between;  
-    width: 342px;
-
-    @media (max-width: 1024px) {
-        & {
-            display: none;
-        }
-    }
+    @include adap-page("width", 2, 100, 342);
 }
 .icons-row__margin {
     margin-right: 16px;
+    @include adap-page("margin-left", 2, 30, 250);
 }
 .icons-row__icon {
-    @include adap-page("height", 1, 50, 78);
-    @include adap-page("width", 1, 50, 78);
+    @include adap-page("height", 2, 18, 78);
+    @include adap-page("width", 2, 18, 78);
 }
 .header-content__connect-button {
     @include font-style(black, 18px, 400);
@@ -129,8 +130,6 @@ body {
         border: 1px solid rgba(128, 128, 128, 0.404);
     }
 }
-
-
 .title-block {
     position: relative;
 }
@@ -174,11 +173,8 @@ body {
     object-fit: cover;
     z-index: -1;
 }
-
-.about-me {
-}
 .about-me__margin {
-    margin-bottom: 120px;
+    @include adap-page("margin-bottom", 2, 50, 120);
 }
 .about-me__title {
     @include font-style(black, 48px, 600);
@@ -246,20 +242,21 @@ body {
 }
 
 .skills {
-    width: 1338px;
-    height: 694px;
-    border-radius: 63px;
+    @include adap-page("width", 2, 280, 1338);
+    @include adap-page("height", 2, 180, 694);
+    @include adap-page("border-radius", 2, 17, 63);
     background: #141414;
 }
 .skills__wrapper{
     margin: 0 auto;
-    margin-bottom: 119px;
-    padding: 91px;
+    @include adap-page("margin-bottom", 2, 50, 119);
+    @include adap-page("padding", 2, 15, 91);
 }
 .skills__title {
     @include font-style(white, 48px, 600);
+    @include adap-page("font-size", 2, 13, 48);
+    @include adap-page("margin-bottom", 2, 23, 82);
     text-align: center;
-    margin-bottom: 82px;
 }
 .skills__block {
    display: flex;
@@ -269,65 +266,61 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 250px;
+    @include adap-page("height", 2, 70, 250);
 }
 .skills__item {
     @include font-style(white, 24px, 600);
+    @include adap-page("font-size", 2, 6, 24);
     text-transform: uppercase;
 
     &::before {
         content: "";
         position: relative;
-        top:-4px;
-        margin-right: 15px;
-        height: 10px;
-        width: 350px;
+        @include adap-page("top", 2, 0, -4);
+        @include adap-page("margin-right", 2, 1, 15);
+        @include adap-page("height", 2, 5, 10);
+        @include adap-page("width", 2, 80, 350);
         display: inline-block;
         border: 1px solid rgba(128, 128, 128, 0.2);
         border-radius: 15px;
     }
 }
 
-.projects {
-}
 .projects__wrapper {
-
+    
 }
 .projects__title {
     @include font-style(black, 48px, 600);
+    @include adap-page("font-size", 2, 12, 48);
+    @include adap-page("margin-bottom", 2, 20, 84);
     text-align: center;
-    margin-bottom: 84px;
 }
 .projects__block {
     display: flex;
     flex-direction: column;
 
-    .projects__row-items:nth-child(1) {
-        .projects__item:last-child {
-            top: -30px;
-        }
-    }
-    .projects__row-items:nth-child(2) {
-        .projects__item:first-child {
-            top: -30px;
-        }
+    .projects__row-items:nth-child(1) > .projects__item:last-child,
+    .projects__row-items:nth-child(2) > .projects__item:first-child {
+        @include adap-page("top", 2, -8, -30);
     }
     .projects__row-items:nth-child(3) {
         .projects__item:last-child {
-            top: -90px;
+            @include adap-page("top", 2, -17, -90);
         }
     }
 }
 .projects__row-items {
+    @include adap-page("height", 2, 70, 380);
     display: flex;
     justify-content: space-between;
-    margin-bottom: 130px;
-
+    @include adap-page("margin-bottom", 2, 24, 130);
 }
 .projects__item {
     position: relative;
-    box-shadow: 14px 14px 12px -2px rgba(0, 0, 0, 0.25);
-    max-height: 60%;
+    box-shadow: calc(3px + (14 - 3) * ((100vw - 320px) / (1728 - 320)))
+                calc(3px + (14 - 3) * ((100vw - 320px) / (1728 - 320)))
+                calc(3px + (12 - 3) * ((100vw - 320px) / (1728 - 320))) 
+    -2px rgba(0, 0, 0, 0.25);
     height: 100%;
 }
 
@@ -335,18 +328,16 @@ body {
     box-shadow: none;
 }
 
-.services {
-}
 .services__margin {
-    margin-bottom: 300px;
+    @include adap-page("margin-bottom", 2, 60, 300);
 }
 .services__title {
     @include font-style(black, 48px, 600);
+    @include adap-page("font-size", 2, 20, 48);
+    @include adap-page("margin-bottom", 2, 30, 84);
     text-align: center;
-    margin-bottom: 84px;
 }
 .services__block {
-
     .services__row-items:nth-child(1) {
         .services__item:nth-child(1) {
             background: linear-gradient(180deg, #8C4B4B 0%, #EFBE9B 0.01%, rgba(189, 164, 98, 0.89) 100%);
@@ -400,40 +391,42 @@ body {
             background: linear-gradient(152deg, #DD20A8 0%, rgba(20, 168, 252, 0.48) 100%);
         }
     }
-
-
 }
 .services__row-items {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 65px;
+    @include adap-page("margin-bottom", 2, 15, 65);
 }
 .services__item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 398px;
-    height: 471px;
-    border-radius: 57px;
+    @include adap-page("width", 2, 80, 398);
+    @include adap-page("height", 2, 110, 471);
+    @include adap-page("border-radius", 2, 14, 57);
+    @include adap-page("padding-top", 2, 18, 76);
+    @include adap-page("padding-bottom", 2, 18, 76);
     text-align: center;
-    padding: 76px 0px;
 }
 .services__name-item {
     @include font-style(white, 36px, 500);
+    @include adap-page("font-size", 2, 7, 36);
     text-transform: uppercase;
 }
 .services__more-button {
     @include font-style(white, 24px, 500);
+    @include adap-page("font-size", 2, 6, 24);
+    @include adap-page("margin-right", 2, -6, -24);
 }
 .services__more-button::after {
     content: "";
     display: inline-block;
     position: relative;
-    top: 6px;
-    height: 24px;
-    width: 24px;
+    @include adap-page("top", 2, 1, 6);
+    @include adap-page("width", 2, 6, 24);
+    @include adap-page("height", 2, 6, 24);
+    @include adap-page("margin-left", 2, 2, 8);
     background: url(../img/arrowcircleright.svg) center/100% 100% no-repeat;
-    margin-left: 8px;
 }
 
 .communication {
@@ -442,100 +435,97 @@ body {
     align-items: center;
 }
 .communication__wrapper {
-    margin-bottom: 48px;
+    @include adap-page("margin-bottom", 2, 0, 48);
 }
 .communication__block {
     display: flex;
     justify-content: center;
-    margin-bottom: 150px;
+    @include adap-page("margin-bottom", 2, 40, 150);
 }
 .communication__img {
     z-index: -1;
     position: relative;
-    top: 90px;
+    @include adap-page("height", 2, 110, 529);
+    @include adap-page("top", 2, 40, 90);
     left: 0px;
 }
 .communication__block-inputs {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 581px;
-    width: 486px;
+    @include adap-page("height", 2, 140, 581);
+    @include adap-page("width", 2, 110, 486);
+}
+
+.communication__button-send,
+.communication__input-massage,
+.communication__input-email,
+.communication__input-name {
+    border: solid transparent;
+    @include font-style(black, 24px, 500);
+    @include adap-page("width", 2, 110, 486);
+    @include adap-page("height", 2, 18, 74);
+    @include adap-page("font-size", 2, 5, 24);
+    @include adap-page("padding-top", 2, 5, 22);
+    @include adap-page("padding-bottom", 2, 5, 22);
+    @include adap-page("padding-left", 2, 12, 48);
+    @include adap-page("border-width", 2, 0.5, 5);
+    @include adap-page("padding-top", 2, 5, 22);
+    @include adap-page("padding-bottom", 2, 5, 22);
+    @include adap-page("padding-left", 2, 12, 48);
+    @include adap-page("border-radius", 2, 6, 50);
 }
 
 .communication__input-name {
-    height: 74px;
-    width: 100%;
-    @include font-style(black, 24px, 500);
-    border: 5px solid transparent;
-    border-radius: 50px;
     background: linear-gradient(#fff, #fff) padding-box,
     linear-gradient(#C0BB36, #2E890DE3) border-box;
-    padding: 22px 48px;
 }
 
 .communication__input-email {
-    height: 74px;
-    width: 100%;
-    @include font-style(black, 24px, 500);
-    border: 5px solid transparent;
-    border-radius: 50px;
     background: linear-gradient(#fff, #fff) padding-box,
     linear-gradient(90deg, #C0BB36, #6100FFE3) border-box;
-    padding: 22px 48px;
 }
 
 .communication__input-massage {
-    height: 267px;
-    width: 100%;
-    @include font-style(black, 24px, 500);
-    border: 5px solid transparent;
-    border-radius: 50px;
     background: linear-gradient(#fff, #fff) padding-box,
     linear-gradient(90deg, #C0369A, #0E2988E3, #2E890DE3) border-box;
-    padding: 22px 48px;
+    @include adap-page("width", 2, 110, 486);
+    @include adap-page("height", 2, 60, 267);
 }
 .communication__button-send {
-    height: 74px;
-    width: 209px;
-    @include font-style(black, 24px, 500);
-    border: 10px solid transparent;
     text-align: center;
-    padding: 15px 0;
     margin: 0 auto;
-    border-radius: 50px;
+    padding-left: 0;
     background: linear-gradient(#fff, #fff) padding-box,
     linear-gradient(90deg, #C036AA, #895F0DE3) border-box;
+    @include adap-page("width", 2, 40, 209);
+    @include adap-page("border-width", 2, 2, 10);
+    @include adap-page("padding-top", 2, 5, 15);
+    @include adap-page("padding-bottom", 2, 5, 15);
 }
-
-.icons-row__margin {
-    margin-left: 250px;
-}
-
 .footer-content {
     display: flex;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    height: 192px;
+    width: 100%;
+    @include adap-page("height", 2, 35, 192);
+}
+.footer-content__block-right,
+.footer-content__block-left {
+    position: relative;
+    background: linear-gradient(180deg, #E4CA3F 0%, rgba(29, 151, 129, 0.00) 100%);
+    @include adap-page("width", 2, 150, 617);
+    @include adap-page("height", 2, 110, 474);
+    @include adap-page("border-radius", 2, 30, 125);
 }
 .footer-content__block-left {
-    width: 617px;
-    height: 474px;
-    border-radius: 125px;
-    background: linear-gradient(180deg, #E4CA3F 0%, rgba(29, 151, 129, 0.00) 100%);
     bottom: 0;
-    left: -166px;
-    position: relative;
+    @include adap-page("left", 2, -60, -166);
 }
 .footer-content__block-right {
-    width: 617px;
-    height: 474px;
-    border-radius: 125px;
-    background: linear-gradient(180deg, #E4CA3F 0%, rgba(29, 151, 129, 0.00) 100%);
-    bottom: -60px;
-    right: -406px;
-    position: relative;
+    @include adap-page("bottom", 2, -10, -60);
+    @include adap-page("right", 2, -80, -406);
 }
 
 

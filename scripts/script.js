@@ -1,9 +1,9 @@
-startPage();
 
 
-function startPage() {
-    window.addEventListener(`resize`, () => sizePage());
-}
+window.addEventListener(`resize`, () => {
+    console.log(window.screen.width);
+});
+
 
 let headerContent = document.getElementsByClassName("header-content")[0];
 
